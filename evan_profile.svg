@@ -26,7 +26,8 @@
     <!-- subtle noise texture -->
     <pattern id="grain" patternUnits="userSpaceOnUse" width="4" height="4">
       <rect width="4" height="4" fill="transparent"/>
-      <circle cx="1" cy="1" r="0.5" fill="rgba(0,0,0,0.03)"/>
+      <!-- use simple fill + opacity for better compatibility -->
+      <circle cx="1" cy="1" r="0.5" fill="#000000" fill-opacity="0.03"/>
     </pattern>
 
     <!-- mask for hole of torus -->
@@ -55,6 +56,9 @@
   <!-- TORUS (SVG-only 3D-ish ring) -->
   <g id="torusWrap" transform="translate(450,115)" aria-hidden="true">
     <g id="torus" filter="url(#softGlow)">
+      <!-- rotation animation moved inside the element (GitHub-safe) -->
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="26s" repeatCount="indefinite"/>
+
       <!-- back shadow band -->
       <ellipse rx="180" ry="76" fill="none" stroke="#00160b" stroke-width="60" opacity="0.30"/>
       <!-- main rim -->
@@ -77,9 +81,6 @@
       </g>
     </g>
 
-    <!-- slow rotation -->
-    <animateTransform xlink:href="#torus" attributeName="transform" type="rotate" from="0 0 0" to="360 0 0"
-                      dur="26s" repeatCount="indefinite"/>
     <!-- sparks -->
     <g id="sparks" opacity="0.9">
       <circle cx="-120" cy="-10" r="1.6" fill="#00ff66" opacity="0.65">
